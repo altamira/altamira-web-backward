@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/purchaseorder.html',
         controller: 'PurchaseorderCtrl'
       })
+      .when('/edit-request', {
+        templateUrl: 'edit-request.html',
+        controller: 'EditRequestCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -106,6 +110,6 @@ angular
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     // Configuração do framework Restangular.
-    RestangularProvider.setBaseUrl('http://localhost:8080/altamira-bpm/rest');  
+    RestangularProvider.setBaseUrl('http://localhost:8080/altamira-bpm/rest');
 
   });
