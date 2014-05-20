@@ -1,6 +1,19 @@
 'use strict';
 
 angular.module('altamiraWebApp')
-  .service('Quotation', function Quotation() {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+  .factory('Quotation', function ($log, Restangular) {
+    var quotation = Restangular.one('quotation');
+
+    // Public API...
+    return {
+      getCurrentQuotation: function () {
+        return quotation.get();
+      },
+      save : function(quotationToSave) {
+        return quotation.customPUT(quotationToSave);
+      },
+      closeCurrentQuotation : function() {
+        return quotation.customPOST();
+      }
+    };
   });

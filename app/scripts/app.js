@@ -6,12 +6,13 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
+    'ui.bootstrap',
     'restangular'
   ])
   .run(function($rootScope) {
     $rootScope.bgcolor = "white";
     $rootScope.fgcolor = "black";
-    $rootScope.title = "Altamira Industria Metalurgica"
+    $rootScope.page = { title : "Altamira Industria Metalurgica" };
   })
   .config(function ($routeProvider, $httpProvider, RestangularProvider) {
     $routeProvider
@@ -27,6 +28,10 @@ angular
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl'
       })
+      .when('/requestItem', {
+        template: 'requestItem.html',
+        controller: 'RequestItemCtrl'
+      })
       .when('/quotation', {
         templateUrl: 'views/quotation.html',
         controller: 'QuotationCtrl'
@@ -39,8 +44,8 @@ angular
         templateUrl: 'views/purchaseorder.html',
         controller: 'PurchaseorderCtrl'
       })
-      .when('/edit-request', {
-        templateUrl: 'edit-request.html',
+      .when('/request-edit', {
+        templateUrl: 'request.html',
         controller: 'EditRequestCtrl'
       })
       .otherwise({

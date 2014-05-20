@@ -27,7 +27,21 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-
+    <script type="text/ng-template" id="showErrorServerModal.html">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+          <h4>{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Ocorreu um erro durante a chamada de um serviço. Codigo: {{error.code}}</p>
+        <p><strong>{{error.message}}</strong></p>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+      </div>          
+    </script>
+    
     <!-- Add your site or application content here -->
     <div ng-view></div>
 
@@ -85,6 +99,10 @@
         <script src="scripts/directives/navtitle.js"></script>
         <script src="scripts/directives/maintitle.js"></script>
         <script src="scripts/controllers/edit-request.js"></script>
+        <script src="scripts/filters/lamination.js"></script>
+        <script src="scripts/filters/treatment.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/dateutil.js"></script>
         <!-- endbuild -->
 </body>
 </html>

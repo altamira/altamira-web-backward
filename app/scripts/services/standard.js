@@ -1,6 +1,13 @@
 'use strict';
 
 angular.module('altamiraWebApp')
-  .service('Standard', function Standard() {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+  .factory('Standard', function (Restangular) {
+    var request = Restangular.one('standard');
+
+    // Public API...
+    return {
+      getAll: function () {
+        return request.get();
+      }
+    };
   });
