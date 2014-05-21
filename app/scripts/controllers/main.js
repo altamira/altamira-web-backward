@@ -1,29 +1,10 @@
 'use strict';
 
-var showErrorServerModalController = function ($scope, $modalInstance, title, error) {
-  $scope.title = title;
-  $scope.error = error;
-
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
-
 angular.module('altamiraWebApp')
   .controller('MainCtrl', function ($rootScope, $scope, $cookieStore, $location, $modal, $log, $timeout, Auth) {
 
     // Configura o subtítulo a ser usado na página.
     $rootScope.page.title = 'Home';
-
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
     var handleError = function(evt, error) {
       var modalInstance = $modal.open({

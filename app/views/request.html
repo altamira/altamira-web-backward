@@ -1,8 +1,8 @@
 <script type="text/ng-template" id="requestItem.html">
-  <h4>{{title}}</h4>
+  <navtitle></navtitle>
   <div class="container">
     <form name="request_form" role="form" novalidate>
-		  <legend>Item da Requisição</legend>
+		  <legend>{{modal.title}}</legend>
   		<div class="input-control radio" data-role="input-control">
         <div class="span2">
         <label><input type="radio" name="tipo" id="tipoChapa" ng-model="modal.item.cut" value="C" ng-change="changedCut()"><span class="check"></span>Chapa</label>
@@ -117,41 +117,41 @@
 
 <div class="container">
   <navtitle></navtitle>
-    <div class="bs-example">
-    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-    <!-- <h4 ng-bind="title + ' - Data Criação: ' + (request.created|date:'dd/MM/yyyy')"></h4> -->
-    <p>
-      <button ng-click="editRequest()"><img src="images/ajax-loader.gif" ng-show="httpIndicator"><span class="icon-plus-2"></span> Incluir</button>
-      <button ng-click="sendRequest()" ng-disabled="request.items.length === 0"><span class="icon-checkmark"></span> Enviar Requisição</button>
-    </p>
+  <div class="bs-example">
+  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+  <!-- <h4 ng-bind="title + ' - Data Criação: ' + (request.created|date:'dd/MM/yyyy')"></h4> -->
+  <p>
+    <button ng-click="edit()"><img src="images/ajax-loader.gif" ng-show="httpIndicator"><span class="icon-plus-2"></span> Incluir</button>
+    <button ng-click="send()" ng-disabled="request.items.length === 0"><span class="icon-checkmark"></span> Enviar Requisição</button>
+  </p>
 
-    <table class="table table-condensed table-striped">
-      <thead>
-        <tr>
-          <th>Laminação</th>
-          <th>Tratamento</th>
-          <th>Espessura (mm)</th>
-          <th>Largura (mm)</th>
-          <th>Comprimento (mm)</th>
-          <th>Peso (kg)</th>
-          <th>Entrega</th>
-          <th width="6%">#</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in request.items">
-          <td>{{item.material.lamination|lamination}}</td>
-          <td>{{item.material.treatment|treatment}}</td>
-          <td>{{item.material.thickness|number:2}}</td>
-          <td>{{item.material.width}}</td>
-          <td>{{item.material.length}}</td>
-          <td>{{item.weight}}</td>
-          <td>{{item.arrival|date:'dd/MM/yyyy'}}</td>
-          <td style="white-space:nowrap;">
-            	<button ng-click="editRequest(item)"><i class="icon-pencil"></i></button> <button ng-click="removeRequest(item)"><i class="icon-remove"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Laminação</th>
+        <th>Tratamento</th>
+        <th>Espessura (mm)</th>
+        <th>Largura (mm)</th>
+        <th>Comprimento (mm)</th>
+        <th>Peso (kg)</th>
+        <th>Entrega</th>
+        <th width="6%">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in request.items">
+        <td>{{item.material.lamination|lamination}}</td>
+        <td>{{item.material.treatment|treatment}}</td>
+        <td>{{item.material.thickness|number:2}}</td>
+        <td>{{item.material.width}}</td>
+        <td>{{item.material.length}}</td>
+        <td>{{item.weight}}</td>
+        <td>{{item.arrival|date:'dd/MM/yyyy'}}</td>
+        <td style="white-space:nowrap;">
+          	<button ng-click="edit(item)"><i class="icon-pencil"></i></button> <button ng-click="delete(item)"><i class="icon-remove"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>

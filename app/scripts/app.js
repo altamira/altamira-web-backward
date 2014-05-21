@@ -9,10 +9,21 @@ angular
     'ui.bootstrap',
     'restangular'
   ])
-  .run(function($rootScope) {
+  .run(function($rootScope, $location) {
     $rootScope.bgcolor = "white";
     $rootScope.fgcolor = "black";
     $rootScope.page = { title : "Altamira Industria Metalurgica" };
+
+    var history = [];
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+        history.push($location.$$path);
+    });
+
+    $rootScope.back = function () {
+        var prevUrl = history.length > 1 ? history.splice(-2)[0] : "/";
+        $location.path(prevUrl);
+    };
   })
   .config(function ($routeProvider, $httpProvider, RestangularProvider) {
     $routeProvider
@@ -27,10 +38,6 @@ angular
       .when('/request', {
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl'
-      })
-      .when('/requestItem', {
-        template: 'requestItem.html',
-        controller: 'RequestItemCtrl'
       })
       .when('/quotation', {
         templateUrl: 'views/quotation.html',
@@ -47,6 +54,10 @@ angular
       .when('/request-edit', {
         templateUrl: 'request.html',
         controller: 'EditRequestCtrl'
+      })
+      .when('/requestItem', {
+        templateUrl: 'views/requestItem.html',
+        controller: 'RequestItemCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -81,27 +92,27 @@ angular
             case 401:
               $log.error('Detectada a necessidade de autenticação');
 
-              $rootScope.$broadcast('auth:loginRequired');
+              $rootScope.$broadcast('auth:loginRequired', { origin : "Falha de autenticação.", code : rejection.status, message : 'É necessário autenticação para acessar este recurso.', url : rejection.config.url });
               break;
             case 403:
               $log.error('Detectado o acesso a um recurso sem autorização');
 
-              $rootScope.$broadcast('auth:forbidden');
+              $rootScope.$broadcast('auth:forbidden', { origin : "Acesso negado.", code : rejection.status, message : 'Você não tem autorização para acessar o recurso.', url : rejection.config.url });
               break;
             case 404:
               $log.error('Detectado o acesso a um recurso não encontrado no servidor');
 
-              $rootScope.$broadcast('page:notFound', { code : rejection.status, message : 'Página ou recurso não encontrado. URL: ' + rejection.config.url });
+              $rootScope.$broadcast('page:notFound', { origin : "Página ou recurso não encontrado.", code : rejection.status, message : 'A página ou recurso não foi encontrada.', url : rejection.config.url });
               break;
             case 500:
               $log.error('Detectado um erro interno no servidor');
 
-              $rootScope.$broadcast('server:error', { code : rejection.status, message : rejection.data });
+              $rootScope.$broadcast('server:error', { origin : "Erro interno no servidor.", code : rejection.status, message : rejection.data, url : rejection.config.url });
               break;
             default:
               $log.error('Detectado um erro de conexão com o servidor: Status: ' + rejection.status + '. URL: ' + rejection.config.url);
 
-              $rootScope.$broadcast('connection:error', { code : rejection.status, message : 'Erro de conexão. URL: ' + rejection.config.url});
+              $rootScope.$broadcast('connection:error', { origin : "Falha de comunicação.", code : rejection.status, message : 'Ocorreu um erro durante a chamada de um serviço.', url : rejection.config.url});
           }
 
           return $q.reject(rejection);

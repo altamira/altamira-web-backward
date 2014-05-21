@@ -42,6 +42,10 @@
       </div>          
     </script>
     
+    <div ng-controller="SystemCtrl">
+    
+    </div>
+
     <!-- Add your site or application content here -->
     <div ng-view></div>
 
@@ -65,6 +69,8 @@
     <!-- bower:js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -75,15 +81,19 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
-    <script src="bower_components/metro-ui/min/metro.min.js"></script>
-    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
-    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="bower_components/metro-ui/js/metro-core.js"></script>
+    <script src="bower_components/metro-ui/js/metro-touch-handler.js"></script>
+    <script src="bower_components/metro-ui/js/metro-dialog.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/directives/login.js"></script>
+        <script src="scripts/directives/navtitle.js"></script>
+        <script src="scripts/directives/maintitle.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/dateutil.js"></script>
         <script src="scripts/services/request.js"></script>
         <script src="scripts/services/standard.js"></script>
         <script src="scripts/services/material.js"></script>
@@ -91,18 +101,15 @@
         <script src="scripts/services/quotation.js"></script>
         <script src="scripts/services/purchaseorder.js"></script>
         <script src="scripts/services/purchaseplanning.js"></script>
+        <script src="scripts/filters/lamination.js"></script>
+        <script src="scripts/filters/treatment.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/request.js"></script>
         <script src="scripts/controllers/quotation.js"></script>
         <script src="scripts/controllers/purchaseorder.js"></script>
         <script src="scripts/controllers/purchaseplanning.js"></script>
-        <script src="scripts/directives/navtitle.js"></script>
-        <script src="scripts/directives/maintitle.js"></script>
-        <script src="scripts/controllers/edit-request.js"></script>
-        <script src="scripts/filters/lamination.js"></script>
-        <script src="scripts/filters/treatment.js"></script>
-        <script src="scripts/services/auth.js"></script>
-        <script src="scripts/services/dateutil.js"></script>
+        <script src="scripts/controllers/requestitem.js"></script>
+        <script src="scripts/controllers/system.js"></script>
         <!-- endbuild -->
 </body>
 </html>
