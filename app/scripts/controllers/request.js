@@ -25,7 +25,7 @@ var ConfirmSendRequestModalController = function ($scope, $modalInstance, title)
 };
 
 angular.module('altamiraWebApp')
-  .controller('RequestCtrl', function ($filter, $rootScope, $scope, $modal, $log, $timeout, $location, Restangular, DateUtil, Request, Material) {
+  .controller('RequestCtrl', function ($filter, $rootScope, $scope, $modal, $window, $log, $timeout, $location, Restangular, DateUtil, Request, Material) {
 
     $scope.title = "Requisição de Compra de Aço";
 
@@ -104,6 +104,10 @@ angular.module('altamiraWebApp')
         });
       }, function () {
       });
+    };
+
+    $scope.print = function() {
+      $window.open("http://localhost:8080/altamira-bpm/rest/requests/" + 126 + "/report");
     };
 
     $scope.closeAlert = function(index) {
