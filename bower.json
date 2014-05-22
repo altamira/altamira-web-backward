@@ -16,7 +16,7 @@
     "underscore": "~1.6.0",
     "momentjs": "~2.6.0",
     "modernizr": "~2.8.2",
-    "metro-ui": "git://github.com/alessandro-holanda/metro-ui.git"
+    "metro-ui": "git://github.com/alessandro-holanda/metro-ui.git#master"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
